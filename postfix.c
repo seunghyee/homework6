@@ -49,7 +49,7 @@ void evaluation();
 int main()
 {
    printf("-----[sonseunghye][2023078010-----]\n");
-   
+
    char command;
 
    do{
@@ -89,12 +89,12 @@ int main()
 
    return 1;
 }
-
+// 후위 표기식에 문자를 추가하는 함수
 void postfixPush(char x)
 {
     postfixStack[++postfixStackTop] = x;
 }
-
+// 후위 표기식에서 문자를 꺼내는 함수
 char postfixPop()
 {
     char x;
@@ -105,12 +105,12 @@ char postfixPop()
     }
     return x;
 }
-
+// 계산 스택에 정수를 추가하는 함수
 void evalPush(int x)
 {
     evalStack[++evalStackTop] = x;
 }
-
+// 계산 스택에서 정수를 꺼내는 함수
 int evalPop()
 {
     if(evalStackTop == -1)
@@ -118,13 +118,13 @@ int evalPop()
     else
         return evalStack[evalStackTop--];
 }
-
+// 중위 표기식을 입력받는 함수
 void getInfix()
 {
     printf("Type the expression >>> ");
     scanf("%s", infixExp);
 }
-
+// 문자에 해당하는 우선순위를 반환하는 함수
 precedence getToken(char symbol)
 {
    switch(symbol) {
@@ -137,12 +137,12 @@ precedence getToken(char symbol)
    default : return operand;
    }
 }
-
+// 연산자의 우선순위를 반환하는 함수
 precedence getPriority(char x)
 {
    return getToken(x);
 }
-
+// 문자열에 문자를 추가하는 함수
 void charCat(char* c)
 {
    if (postfixExp[0] == '\0')
@@ -150,7 +150,7 @@ void charCat(char* c)
    else
       strncat(postfixExp, c, 1);
 }
-
+// 중위 표기식을 후위 표기식으로 변환하는 함수
 void toPostfix()
 {
    char *exp = infixExp;
@@ -182,7 +182,7 @@ void toPostfix()
    while(postfixStackTop != -1) // 스택이 비어있지 않을 때
       charCat(&postfixStack[postfixStackTop--]); // 스택의 모든 연산자를 postfixExp에 추가
 }
-
+// 디버그 정보를 출력하는 함수
 void debug()
 {
    printf("\n---DEBUG\n");
@@ -196,7 +196,7 @@ void debug()
 
    printf("\n");
 }
-
+// 모든 변수를 초기화하는 함수
 void reset()
 {
    infixExp[0] = '\0';
@@ -209,7 +209,7 @@ void reset()
    evalStackTop = -1;
    evalResult = 0;
 }
-
+// 후위 표기식을 평가하여 결과를 계산하는 함수
 void evaluation()
 {
     char *exp = postfixExp;
